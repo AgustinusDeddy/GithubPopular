@@ -3,22 +3,46 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import PlayerPreview from './PlayerPreview';
 
+// PlayerInput.propTypes = {
+//   id: PropTypes.string.isRequired,
+//   label: PropTypes.string.isRequired,
+//   onSubmit: PropTypes.func.isRequired,
+// }
+
+// PlayerInput.defaultProps = {
+//   label: 'Username',
+// }
+
 class PlayerInput extends React.Component {
+
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    onSubmit: PropTypes.func.isRequired
+  }
+
+  static defaultProps = {
+    label: 'Username'
+  }
+
   constructor(props) {
     super(props);
-    this.state = {
-      username: ''
-    };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChange(event) {
+
+  state = {
+    username: ''
+  };
+
+  handleChange = (event) => {
     const value = event.target.value;
 
     this.setState(() => ({ username: value }))
   }
-  handleSubmit(event) {
+
+  handleSubmit = (event) => {
     event.preventDefault();
 
     this.props.onSubmit(
@@ -26,6 +50,7 @@ class PlayerInput extends React.Component {
       this.state.username
     );
   }
+
   render() {
     const { username } = this.state
     const { label } = this.props
@@ -52,40 +77,41 @@ class PlayerInput extends React.Component {
   }
 }
 
-PlayerInput.propTypes = {
-  id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-}
 
-PlayerInput.defaultProps = {
-  label: 'Username',
-}
 
 class Battle extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      playerOneName: '',
-      playerTwoName: '',
-      playerOneImage: null,
-      playerTwoImage: null,
-    };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+  state = {
+    playerOneName: '',
+    playerTwoName: '',
+    playerOneImage: null,
+    playerTwoImage: null
   }
-  handleSubmit(id, username) {
+
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+     
+  //   };
+
+  //   this.handleSubmit = this.handleSubmit.bind(this);
+  // }
+
+
+  handleSubmit = (id, username) => {
     this.setState(() => ({
       [id + 'Name']: username,
       [id + 'Image']: `https://github.com/${username}.png?size=200`
     }))
   }
-  handleReset(id) {
+
+  handleReset = (id) => {
     this.setState(() => ({
       [id + 'Name']: '',
       [id + 'Image']: null
     }))
   }
+
   render() {
     const { match } = this.props;
     const { playerOneName, playerOneImage, playerTwoName, playerTwoImage } = this.state;

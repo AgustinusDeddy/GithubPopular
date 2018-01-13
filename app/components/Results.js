@@ -43,20 +43,20 @@ Player.propTypes = {
 
 class Results extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            winner: null,
-            loser: null,
-            error: null,
-            loading: true
-        }
+    state = {
+        winner: null,
+        loser: null,
+        error: null,
+        loading: true
     }
+
+    // constructor(props) {
+    //     super(props);    
+    // }
 
     componentDidMount () {
         const {playerOneName, playerTwoName} = queryString.parse(this.props.location.search);
-        console.log(players);
+        // console.log(players);
 
         battle([
             playerOneName,

@@ -5,12 +5,24 @@ import PropTypes from 'prop-types';
 
 class Loading extends React.Component {
 
+    static propTypes = {
+        text: PropTypes.string.isRequired,
+        speed: PropTypes.number.isRequired,
+        color: PropTypes.string.isRequired
+    }
+    
+    static defaultProps = {
+        text: 'Loading',
+        speed: 300,
+        color: 'red'
+    };
+
+    state = {
+        text: this.props.text
+    }
+
     constructor(props) {
         super(props);
-
-        this.state = {
-            text: props.text
-        }
 
         this.styles = {
             content: {
@@ -47,18 +59,6 @@ class Loading extends React.Component {
         )
     }
 }
-
-Loading.propTypes = {
-    text: PropTypes.string.isRequired,
-    speed: PropTypes.number.isRequired,
-    color: PropTypes.string.isRequired
-}
-
-Loading.defaultProps = {
-    text: 'Loading',
-    speed: 300,
-    color: 'red'
-};
 
 // module.exports = Loading;
 export default Loading;
