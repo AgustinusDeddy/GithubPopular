@@ -1,5 +1,5 @@
-const React = require('react');
-const PropTypes = require('prop-types');
+import React from 'react';
+import PropTypes from 'prop-types';
 
 // var styles = {};
 
@@ -60,4 +60,5 @@ Loading.defaultProps = {
     color: 'red'
 };
 
-module.exports = Loading;
+// module.exports = Loading;
+export default Loading;
